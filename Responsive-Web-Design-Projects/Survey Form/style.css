@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root {
+  --font-color: #3c3e74;
+  --main-color: #ffffff;
+  --second-color: #fa949d;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #3e2093;
+}
+
+.title {
+  text-align: center;
+  color: var(--main-color);
+}
+
+.description {
+  text-align: center;
+  font-style: italic;
+  color: var(--main-color);
+}
+
+.container {
+  max-width: 750px;
+  margin: 0 auto;
+  font-size: 23px;
+  color: var(--font-color);
+}
+
+.form {
+  margin: 10px;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: var(--main-color);
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+  margin-bottom: 10px;
+}
+
+.input {
+  height: 40px;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  border: 1px solid #dfdfe8;
+  border-radius: 5px;
+  color: var(--font-color);
+  cursor: pointer;
+}
+
+.input::placeholder {
+  color: #acadc3;
+}
+
+.input:focus {
+  outline-color: var(--second-color);
+}
+
+.check,
+.radio {
+  position: relative;
+  padding-left: 1.2em;
+  cursor: pointer;
+}
+
+.check__input,
+.radio__input {
+  position: absolute;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.check__box,
+.radio__box {
+  position: absolute;
+  top: 5px;
+  margin-left: -1.2em;
+  width: 1em;
+  height: 1em;
+  border: 2px solid var(--second-color);
+}
+
+.check__box {
+  border-radius: 3px;
+}
+
+.radio__box {
+  border-radius: 50%;
+}
+
+.radio__box::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  display: block;
+  width: 0.5em;
+  height: 0.5em;
+  background-color: var(--second-color);
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.radio__input:checked + .radio__box::after {
+  opacity: 1;
+}
+
+.check__input:checked + .check__box {
+  background-color: var(--second-color);
+  background-image: url('checking-mark.svg');
+}
+
+.area {
+  min-height: 120px;
+  width: 100%;
+  padding: 10px;
+  resize: vertical;
+}
+
+.button {
+  padding: 10px;
+  font-size: 24px;
+  border-radius: 5px;
+  border: none;
+  color: var(--main-color);
+  background-color: var(--second-color);
+  cursor: pointer;
+}
+
+.button:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 520px) {
+  .form {
+    padding: 10px;
+  }
+}
