@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <title>SCSS Documentation</title>
+</head>
+<body>    
+    <nav class="navbar" id="navbar">
+      <header class="navbar__header header">SCSS Documentation</header>
+        <ul class="navbar__list">
+          <li class="navbar__item"><a class="nav-link navbar__link" href="#Preprocessing">Preprocessing</a></li>
+          <li class="navbar__item"><a class="nav-link navbar__link" href="#Documentation">Documentation</a></li>
+          <li class="navbar__item"><a class="nav-link navbar__link" href="#Variables">Variables</a></li>
+          <li class="navbar__item"><a class="nav-link navbar__link" href="#Nesting">Nesting</a></li>
+          <li class="navbar__item"><a class="nav-link navbar__link" href="#Partials">Partials</a></li>
+          <li class="navbar__item"><a class="nav-link navbar__link" href="#Modules">Modules</a></li>
+          <li class="navbar__item"><a class="nav-link navbar__link" href="#Mixins">Mixins</a></li>
+          <li class="navbar__item"><a class="nav-link navbar__link" href="#Extend/Inheritance">Extend/Inheritance</a></li>
+          <li class="navbar__item"><a class="nav-link navbar__link" href="#Operators">Operators</a></li>
+    </nav>
+  <main class="main" id="main-doc">
+
+    <section class="main-section documentation" id="Documentation">
+      <header class="header">Documentation</header>
+      <article class="article documentation__article">
+        <p>
+          Sass is a stylesheet language that’s compiled to CSS. It allows you to use variables, nested rules, mixins, functions, and more, all with a fully CSS-compatible syntax. Sass helps keep large stylesheets well-organized and makes it easy to share design within and across projects.
+        </p>
+        <ul class="documentation__list">
+          <li class="list__item">If you’re looking for an introduction to Sass, check out <a class="list__link" href="https://sass-lang.com/guide">the tutorial</a>.</li>
+          <li class="list__item">If you want to look up a built-in Sass function, look no further than <a class="list__link" href="https://sass-lang.com/documentation/modules">the built-in module reference</a>.</li>
+          <li class="list__item">If you’re calling Sass from JavaScript, you may want the <a class="list__link" href="https://github.com/sass/node-sass#usage">JS API documentation</a>.</li>
+          <li class="list__item">Or the <a class="list__link" href="https://pub.dartlang.org/documentation/sass/latest/sass/sass-library.html">Dart API documentation</a> if you’re calling it from Dart.</li>
+          <li class="list__item">Otherwise, use the table of contents for the language reference!</li>
+        </ul>
+      </article>
+    </section>
+    <section class="main-section preprocessing" id="Preprocessing">
+      <header class="header">Preprocessing</header>
+      <article class="article">
+        <p>
+        CSS on its own can be fun, but stylesheets are getting larger, more complex, and harder to maintain. This is where a preprocessor can help. Sass lets you use features that don't exist in CSS yet like variables, nesting, mixins, inheritance and other nifty goodies that make writing CSS fun again.
+      </p>
+      <p>
+        Once you start tinkering with Sass, it will take your preprocessed Sass file and save it as a normal CSS file that you can use in your website.
+      </p>
+      <p>
+        The most direct way to make this happen is in your terminal. Once Sass is installed, you can compile your Sass to CSS using the <span>sass</span> command. You'll need to tell Sass which file to build from, and where to output CSS to. For example, running <span>sass input.scss output.css</span> from your terminal would take a single Sass file, <span>input.scss</span>, and compile that file to output.css.
+      </p>
+      <p>
+        You can also watch individual files or directories with the <span>--watch flag</span>. The watch flag tells Sass to watch your source files for changes, and re-compile CSS each time you save your Sass. If you wanted to watch (instead of manually build) your input.scss file, you'd just add the watch flag to your command, like so:
+      </p>
+      <code class="code">sass --watch input.scss output.css</code>
+      <p>
+        You can watch and output to directories by using folder paths as your input and output, and separating them with a colon. In this example:
+      </p>
+      <code class="code">sass --watch app/sass:public/stylesheets</code>
+      <p>
+        Sass would watch all files in the app/sass folder for changes, and compile CSS to the public/stylesheets folder.
+      </p>
+      </article>
+      
+    </section>
+    <section class="main-section variables" id="Variables">
+      <header class="header">Variables</header>
+      <article class="article">
+        <p>
+        Think of variables as a way to store information that you want to reuse throughout your stylesheet. You can store things like colors, font stacks, or any CSS value you think you'll want to reuse. Sass uses the $ symbol to make something a variable. Here's an example:
+      </p>
+      <span class="exem">SCSS</span>
+      <code class="code">
+        <span class="code__prop">$font-stack:</span> Helvetica, sans-serif;
+        <span class="code__prop">$primary-color:</span> #333;
+
+        <span class="code__selector">body</span> {
+        <span class="code__prop">font:</span> 100% $font-stack;
+        <span class="code__prop">color:</span> $primary-color;
+        }
+      </code class="code">
+        <span class="exem">CSS</span>
+      <code class="code">
+        <span class="code__selector">body</span> {
+        <span class="code__prop">font:</span> 100% Helvetica, sans-serif;
+        <span class="code__prop">color:</span> #333;
+        }
+      </code class="code">
+      <p>
+        When the Sass is processed, it takes the variables we define for the $font-stack and $primary-color and outputs normal CSS with our variable values placed in the CSS. This can be extremely powerful when working with brand colors and keeping them consistent throughout the site.
+      </p>
+      </article>
+      
+    </section>
+    <section class="main-section nesting" id="Nesting">
+      <header class="header">Nesting</header>
+      <article>
+        <p>
+        When writing HTML you've probably noticed that it has a clear nested and visual hierarchy. CSS, on the other hand, doesn't.
+      </p>
+      <p>
+        Sass will let you nest your CSS selectors in a way that follows the same visual hierarchy of your HTML. Be aware that overly nested rules will result in over-qualified CSS that could prove hard to maintain and is generally considered bad practice
+      </p>
+      <p>
+        With that in mind, here's an example of some typical styles for a site's navigation:
+      </p>
+      <span class="exem">SCSS</span>
+      <code class="code">
+        <span class="code__selector">nav</span> {
+        <span class="code__selector">ul</span> {
+        <span class="code__prop">margin:</span> 0;
+        <span class="code__prop">padding:</span> 0;
+        <span class="code__prop">list-style:</span> none;
+        }
+
+        <span class="code__selector">li</span> { <span class="code__prop">display:</span> inline-block; }
+
+        <span class="code__selector">a</span> {
+        <span class="code__prop">display:</span> block;
+        <span class="code__prop">padding:</span> 6px 12px;
+        <span class="code__prop">text-decoration:</span> none;
+        }
+        }
+      </code>
+      <span class="exem">CSS</span>
+      <code class="code">
+        <span class="code__selector">nav ul</span> {
+        <span class="code__prop">margin:</span> 0;
+        <span class="code__prop">padding:</span> 0;
+        <span class="code__prop">list-style:</span> none;
+        }
+
+        <span class="code__selector">nav li</span> {
+        <span class="code__prop">display:</span> inline-block;
+        }
+
+        <span class="code__selector">nav a</span> {
+        <span class="code__prop">display:</span> block;
+        <span class="code__prop">padding:</span> 6px 12px;
+        <span class="code__prop">text-decoration:</span> none;
+        }
+      </code>
+      <p>
+        You'll notice that the ul, li, and a selectors are nested inside the nav selector. This is a great way to organize your CSS and make it more readable.
+      </p>
+      </article>
+    </section>
+    <section class="main-section partials" id="Partials">
+      <header class="header">Partials</header>
+      <article class="article">
+        <p>
+        You can create partial Sass files that contain little snippets of CSS that you can include in other Sass files. This is a great way to modularize your CSS and help keep things easier to maintain. A partial is a Sass file named with a leading underscore. You might name it something <span>like _partial.scss</span>. The underscore lets Sass know that the file is only a partial file and that it should not be generated into a CSS file. Sass partials are used with the <span>@use</span> rule.
+      </p>
+      </article>
+    </section>
+    <section class="main-section modules" id="Modules">
+      <header class="header">Modules</header>
+      <article class="article">
+        <p>
+        You don't have to write all your Sass in a single file. You can split it up however you want with the <span>@use</span> rule. This rule loads another Sass file as a module, which means you can refer to its variables, mixins, and functions in your Sass file with a namespace based on the filename. Using a file will also include the CSS it generates in your compiled output!
+      </p>
+      <span class="exem">
+        SCSS
+      </span>
+      <code class="code">
+        <span class="code__comment">// _base.scss</span>
+        <span class="code__prop">$font-stack:</span> Helvetica, sans-serif;
+        <span class="code__prop">$primary-color:</span> #333;
+
+        <span class="code__selector">body</span> {
+        <span class="code__prop">font:</span> 100% $font-stack;
+        <span class="code__prop">color:</span> $primary-color;
+        }
+      </code>
+      <code class="code">
+        <span class="code__comment">// styles.scss</span>
+        @use 'base';
+
+        <span class="code__selector">.inverse</span> {
+        <span class="code__prop">background-color:</span> base.$primary-color;
+        <span class="code__prop">color:</span> white;
+        }
+      </code>
+      <span class="exem">CSS</span>
+      <code class="code">
+        <span class="code__selector">body</span> {
+        <span class="code__prop">font:</span> 100% Helvetica, sans-serif;
+        <span class="code__prop">color:</span> #333;
+        }
+
+        <span class="code__selector">.inverse</span> {
+        <span class="code__prop">background-color:</span> #333;
+        span class="code__prop">color:</span> white;
+        }
+      </code>
+        <p>
+          Notice we're using @use 'base'; in the styles.scss file. When you use a file you don't need to include the file extension. Sass is smart and will figure it out for you.
+       </p>
+      </article>
+    </section>
+    <section class="main-section mixins" id="Mixins">
+      <header class="header">Mixins</header>
+      <article class="article">
+        <p>
+          Some things in CSS are a bit tedious to write, especially with CSS3 and the many vendor prefixes that exist. A mixin lets you make groups of CSS declarations that you want to reuse throughout your site. You can even pass in values to make your mixin more flexible. A good use of a mixin is for vendor prefixes. Here's an example for transform.
+        </p>
+        <span class="exem">SCSS</span>
+        <code class="code">
+          <span class="code__selector">@mixin transform($property)</span> {
+          <span class="code__prop">-webkit-transform:</span> $property;
+          <span class="code__prop">-ms-transform:</span> $property;
+          <span class="code__prop">transform:</span> $property;
+          }
+
+        <span class="code__selector">.box </span>{ @include transform(rotate(30deg)); }</code>
+        <span class="exem">CSS</span>
+        <code class="code">
+          <span class="code__selector">.box</span> {
+          <span class="code__prop">-webkit-transform:</span> rotate(30deg);
+          <span class="code__prop">-ms-transform:</span> rotate(30deg);
+          <span class="code__prop">transform:</span> rotate(30deg);
+          }
+        </code>
+        <p>
+          To create a mixin you use the <span>@mixin</span> directive and give it a name. We've named our mixin transform. We're also using the variable <span>$property</span> inside the parentheses so we can pass in a transform of whatever we want. After you create your mixin, you can then use it as a CSS declaration starting with @include followed by the name of the mixin.
+        </p>
+      </article>
+    </section>
+    <section class="main-section extend" id="Extend/Inheritance">
+      <header class="header">Extend/Inheritance</header>
+      <article class="article">
+        <p>
+          This is one of the most useful features of Sass. Using <span>@extend</span> lets you share a set of CSS properties from one selector to another. It helps keep your Sass very DRY. In our example we're going to create a simple series of messaging for errors, warnings and successes using another feature which goes hand in hand with extend, placeholder classes. A placeholder class is a special type of class that only prints when it is extended, and can help keep your compiled CSS neat and clean.
+        </p>
+        <span class="exem">SCSS</span>
+        <code class="code">
+          <span class="code__comment">/* This CSS will print because %message-shared is extended. */</span>
+          <span class="code__selector">%message-shared</span> {
+          <span class="code__prop">border:</span> 1px solid #ccc;
+          <span class="code__prop">padding:</span> 10px;
+          <span class="code__prop">color:</span> #333;
+          }
+
+          <span class="code__comment">// This CSS won't print because %equal-heights is never extended.</span>
+          <span class="code__selector">%equal-heights</span> {
+          <span class="code__prop">display:</span> flex;
+          <span class="code__prop">flex-wrap:</span> wrap;
+          }
+
+          <span class="code__selector">.message</span> {
+          @extend %message-shared;
+          }
+
+          <span class="code__selector">.success</span> {
+          @extend %message-shared;
+          <span class="code__prop">border-color:</span> green;
+          }
+
+          <span class="code__selector">.error</span> {
+          @extend %message-shared;
+          <span class="code__prop">border-color:</span> red;
+          }
+
+          <span class="code__selector">.warning</span> {
+          @extend %message-shared;
+          <span class="code__prop">border-color:</span> yellow;
+          }
+        </code>
+        <span class="exem">CSS</span>
+        <code class="code">/* This CSS will print because %message-shared is extended. */
+          <span class="code__selector">.message, .success, .error, .warning</span> {
+          <span class="code__prop">border:</span> 1px solid #ccc;
+          <span class="code__prop">padding:</span> 10px;
+          <span class="code__prop">color:</span> #333;
+          }
+
+          <span class="code__selector">.success</span> {
+          <span class="code__prop">border-color:</span> green;
+          }
+
+          <span class="code__selector">.error</span> {
+          <span class="code__prop">border-color:</span> red;
+          }
+
+          <span class="code__selector">.warning</span> {
+          <span class="code__prop">border-color:</span> yellow;
+          }
+        </code>
+        <p>
+          What the above code does is tells <span>.message</span>, <span>.success</span>, <span>.error</span>, and <span>.warning</span> to behave just like %message-shared. That means anywhere that <span>%message-shared</span> shows up, <span>.message</span>, <span>.success</span>, <span>.error</span>, & <span>.warning</span> will too. The magic happens in the generated CSS, where each of these classes will get the same CSS properties as <span>%message-shared</span>. This helps you avoid having to write multiple class names on HTML elements.
+        </p>
+        <p>
+          You can extend most simple CSS selectors in addition to placeholder classes in Sass, but using placeholders is the easiest way to make sure you aren't extending a class that's nested elsewhere in your styles, which can result in unintended selectors in your CSS.
+        </p>
+        <p>
+          Note that the CSS in <span>%equal-heights</span> isn't generated, because <span>%equal-heights</span> is never extended.
+        </p>
+      </article>
+    </section>
+    <section class="main-section operators" id="Operators">
+      <header class="header">Operators</header>
+      <article class="article">
+        <p>
+          Doing math in your CSS is very helpful. Sass has a handful of standard math operators like <span>+</span>, <span>-</span>, <span>*</span>, <span>/</span>, and <span>%</span>. In our example we're going to do some simple math to calculate widths for an aside & <span>article</span>.
+        </p>
+        <span class="exem">SCSS</span>
+        <code class="code">
+          <span class="code__selector">.container</span> {
+          <span class="code__prop">width:</span> 100%;
+          }
+
+          <span class="code__selector">article[role="main"]</span> {
+          <span class="code__prop">float:</span> left;
+          <span class="code__prop">width:</span> 600px / 960px * 100%;
+          }
+
+          <span class="code__selector">aside[role="complementary"]</span> {
+          <span class="code__prop">float:</span> right;
+          <span class="code__prop">width:</span> 300px / 960px * 100%;
+          }
+        </code>
+        <span class="exem">CSS</span>
+        <code class="code">
+          <span class="code__selector">.container </span>{
+          <span class="code__prop">width:</span> 100%;
+          }
+
+          <span class="code__selector">article[role="main"]</span> {
+          <span class="code__prop">float:</span> left;
+          <span class="code__prop">width:</span> 62.5%;
+          }
+
+          <span class="code__selector">aside[role="complementary"]</span> {
+          <span class="code__prop">float:</span> right;
+          <span class="code__prop">width:</span> 31.25%;
+          }
+        </code>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
