@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+  integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+  crossorigin="anonymous"
+/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+  <title>Personal Portfolio Webpage</title>
+</head>
+<body>
+  <header class="header container">
+    <nav class="navbar" id="navbar">
+      <ul class="navbar__list">
+        <li class="navbar__item">
+          <a href="#welcome-section" class="navbar__link">Portfolio</a>
+         </li>
+        <li class="navbar__item">
+          <a href="#projects" class="navbar__link">Projects</a>
+        </li>
+        <li class="navbar__item">
+          <a href="#contacts" class="navbar__link">Contacts</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main class="main container">
+    <section class="welcome section" id="welcome-section">
+      <h1 class="welcome__title">Portfolio Webpage</h1>
+      <div class="welcome__avatar">
+          <img class="welcome__img" src="cat.jpg" alt="cat">
+      </div>
+      <p class="welcome__text">Hellow World!</p>
+    </section>
+    <section class="projects section" id="projects">
+      <h2 class="project-tile">
+        Freecodecamp Projects
+      </h2>
+      <div class="pojects__cards">
+        <div class="card">
+            <img class="card__img" src="demo1.png" alt="demo-img">
+            <h3 class="card__title"><a class="card__link" href="https://voloshin-sergei.github.io/FreeCodeCamp/Responsive-Web-Design-Projects/Landig%20Page/">Landig Page</a></h3>
+        </div>
+        <div class="card">
+            <img class="card__img" src="demo2.png" alt="demo-img">
+            <h3 class="card__title"><a class="card__link" href="https://voloshin-sergei.github.io/FreeCodeCamp/Responsive-Web-Design-Projects/Survey%20Form/">Survey Form</a></h3>
+        </div>
+        <div class="card">
+            <img class="card__img" src="demo3.png" alt="demo-img">
+            <h3 class="card__title"><a class="card__link" href="https://voloshin-sergei.github.io/FreeCodeCamp/Responsive-Web-Design-Projects/Technical%20Documentation%20Page/">Technical Page</a></h3>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer container" id="contacts">
+    <div class="social">
+      <ul class="social__list">
+        <li class="social__item">
+          <a href="https://www.freecodecamp.org/fcce4a7c8b1-1f49-4ccd-8aff-2a2e6c874417" class="social__link" id="profile-link" target="_blank"><i class="fab fa-free-code-camp social__icon"></i></a> 
+        </li>
+        <li class="social__item">
+          <a href="https://github.com/Voloshin-Sergei" class="social__link"><i class="fab fa-github social__icon"></i></a>
+        </li>
+        <li class="social__item">
+          <a href="#" class="social__link"><i class="fas fa-at social__icon"></i></a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>
